@@ -867,13 +867,13 @@ function DataCompaniesScene(){
 function Stage1MainScene(){
   const SS=18,SE=34,PY=222;
   const pipeline=[
-    {x:28, w:185,h:108,label:'Clean corpus\n~15 TB filtered',         stroke:INK,  fill:'none'},
-    {x:268,w:200,h:108,label:'Tokenize\n(BPE)',                        stroke:AMBER,fill:LAMBER},
-    {x:523,w:248,h:108,label:'Train: predict\nnext token\n×1 trillion',stroke:AMBER,fill:LAMBER},
-    {x:836,w:410,h:138,label:'Base / Foundation Model\n8B params · ~16 GB GPU memory\nNot an assistant — just a\nnext-token predictor',stroke:GREEN,fill:LGREEN},
+    {x:28, w:185,h:108,dy:0, label:'Clean corpus\n~15 TB filtered',         stroke:INK,  fill:'none'},
+    {x:268,w:200,h:108,dy:0, label:'Tokenize\n(BPE)',                        stroke:AMBER,fill:LAMBER},
+    {x:523,w:248,h:108,dy:0, label:'Train: predict\nnext token\n×1 trillion',stroke:AMBER,fill:LAMBER},
+    {x:836,w:410,h:138,dy:-15,label:'Base / Foundation Model\n8B params · ~16 GB GPU memory\nNot an assistant — just a\nnext-token predictor',stroke:GREEN,fill:LGREEN},
   ];
   const pipeT=[SS+0.55,SS+1.35,SS+2.2,SS+3.1];
-  const arrows=[{x1:213,y1:PY+54,x2:268,y2:PY+54},{x1:468,y1:PY+54,x2:523,y2:PY+54},{x1:771,y1:PY+54,x2:836,y2:PY+60}];
+  const arrows=[{x1:213,y1:PY+54,x2:268,y2:PY+54},{x1:468,y1:PY+54,x2:523,y2:PY+54},{x1:771,y1:PY+54,x2:836,y2:PY+54}];
   const arrowT=[SS+1.1,SS+1.9,SS+2.8];
   const boxB=PY+108;
   return(<Scene start={SS} end={SE}>
@@ -881,7 +881,7 @@ function Stage1MainScene(){
     <Label start={SS+0.5} end={SE} x={0} y={96} size={17} font={HAND} align="center" width={VW} color={FADE}>Childhood analogy — model absorbs vast text like a child learning language, facts &amp; the world</Label>
     {pipeline.map((b,i)=>(
       <Draw key={i} start={pipeT[i]} end={SE} dur={0.5}>{(d)=>
-        <Box x={b.x} y={PY} w={b.w} h={b.h} draw={d} stroke={b.stroke} fill={b.fill} sw={2.8} labelSize={i===3?17:20}>{b.label}</Box>}
+        <Box x={b.x} y={PY+b.dy} w={b.w} h={b.h} draw={d} stroke={b.stroke} fill={b.fill} sw={2.8} labelSize={i===3?17:20}>{b.label}</Box>}
       </Draw>
     ))}
     {arrows.map((a,i)=>(
