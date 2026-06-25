@@ -970,15 +970,34 @@ function TokenScene(){
       </Draw>
     ))}
     {/* Filter notes */}
-    <Label start={SS+8.0} end={SE} x={635} y={370} size={19} font={HAND} weight={600} color={INK}>Apply controls before sampling:</Label>
-    {[
-      'Temperature < 1 → predictable (T=0.3 for factual tasks)',
-      'Temperature > 1 → creative  (T=1.2 for brainstorming)',
-      'Top-k = 50: keep only the top 50 candidate words',
-      'Top-p = 0.9: nucleus — keep fewest covering 90% prob',
-    ].map((line,i)=>(
-      <Label key={i} start={SS+8.6+i*0.55} end={SE} x={635} y={398+i*38} size={17} font={HAND} color={FADE}>• {line}</Label>
-    ))}
+    <Label start={SS+8.0} end={SE} x={635} y={366} size={19} font={HAND} weight={600} color={INK}>Apply controls before sampling:</Label>
+    <Draw start={SS+8.4} end={SE} dur={0.55}>{(d)=>
+      <Box x={635} y={390} w={612} h={220} draw={d} stroke={AMBER} fill={LAMBER} sw={2} r={13} childStyle={{alignItems:'flex-start',justifyContent:'flex-start',padding:'10px 14px'}}>
+        <div style={{textAlign:'left',width:'100%',lineHeight:1.45}}>
+          <div style={{fontSize:13,color:'#c0392b',marginBottom:5}}>
+            Greedy (always pick highest prob) → same boring output every time. Fix with 3 controls:
+          </div>
+          <div style={{fontSize:14,fontWeight:600,color:AMBER,marginBottom:1}}>① Temperature — scales logits before softmax</div>
+          <div style={{fontFamily:MONO,fontSize:12,color:FADE,marginBottom:6,paddingLeft:10}}>
+            T &lt; 1 → more deterministic &nbsp;|&nbsp; T &gt; 1 → more creative, random<br/>
+            T = 0 → greedy, always same output (no randomness)
+          </div>
+          <div style={{fontSize:14,fontWeight:600,color:AMBER,marginBottom:1}}>② Top-K — keep top K tokens sorted by probability</div>
+          <div style={{fontFamily:MONO,fontSize:12,color:FADE,marginBottom:6,paddingLeft:10}}>
+            K=3: Java 96%, 'a' 3%, 'the' 1% — all 3 kept<br/>
+            Risk: mediocre tokens ('a','the') pollute the sample pool
+          </div>
+          <div style={{fontSize:14,fontWeight:600,color:AMBER,marginBottom:1}}>③ Top-P (nucleus) — cumulative prob until sum &gt; P</div>
+          <div style={{fontFamily:MONO,fontSize:12,color:FADE,marginBottom:6,paddingLeft:10}}>
+            P=0.9: Java 96% alone crosses → 'a'+'the' skipped<br/>
+            Smarter: cut adapts to the shape of each distribution
+          </div>
+          <div style={{fontSize:13,fontWeight:600,color:GREEN}}>
+            ④ Order: Temperature filter → Top-K cut → Top-P cut → sample
+          </div>
+        </div>
+      </Box>}
+    </Draw>
     {/* Sampling result */}
     <Label start={SS+11.5} end={SS+14.5} x={635} y={570} size={34} font={HTITLE} weight={700} color={GREEN}>→ Sampled: 'Paris' ✓</Label>
     {/* Paris token slides to position 6 */}
