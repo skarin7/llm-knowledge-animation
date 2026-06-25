@@ -11,8 +11,7 @@ Interactive animated explainer — *How LLMs Work* — covering pre-training, fi
 | File | Purpose |
 |------|---------|
 | `index.html` | Self-contained animation — **edit this for most changes** |
-| `animations.jsx` | JSX source used by the design-canvas dev workflow |
-| `LLM Knowledge.dc.html` | Design-canvas dev entrypoint (loads `animations.jsx` live) |
+| `animations.jsx` | JSX source used by the design-canvas dev workflow 
 | `support.js` | Design-canvas runtime (compiled, do not edit) |
 | `capture-video.js` | Puppeteer script to export animation as MP4 |
 
@@ -94,12 +93,3 @@ The script:
 
 **Requirements**: `ffmpeg`, `google-chrome`, `node >= 18`
 
----
-
-## Design-canvas dev workflow (advanced)
-
-If you have the design-canvas tool:
-1. Open `LLM Knowledge.dc.html` in browser — it hot-reloads `animations.jsx`
-2. Edit `animations.jsx` directly
-3. Export → overwrites `index.html`
-4. Run `./deploy.sh`
