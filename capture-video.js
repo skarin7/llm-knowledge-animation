@@ -17,7 +17,7 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const HTML_FILE = path.resolve(__dirname, 'docs/episode1.html');
+const HTML_FILE = path.resolve(__dirname, 'docs/how-llms-work-under-hood.html');
 const OUTPUT    = path.join(process.env.HOME, 'llm_knowledge_video.mp4');
 const FRAME_DIR = '/tmp/llm_frames';
 const FPS       = 30;

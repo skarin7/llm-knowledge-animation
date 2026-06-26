@@ -8,7 +8,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './index.html',
-        episode1: './episode1.html',
+        episode1: './how-llms-work-under-hood.html',
       }
     },
     outDir: 'docs',
