@@ -17,11 +17,11 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const HTML_FILE = path.resolve(__dirname, 'LLM Knowledge Bundle.html');
+const HTML_FILE = path.resolve(__dirname, 'docs/episode1.html');
 const OUTPUT    = path.join(process.env.HOME, 'llm_knowledge_video.mp4');
 const FRAME_DIR = '/tmp/llm_frames';
 const FPS       = 30;
-const DURATION  = 188;   // seconds — must match Stage duration in HTML
+const DURATION  = 206;   // seconds — must match TOTAL_DURATION in src/timeline.js
 
 async function main() {
   fs.mkdirSync(FRAME_DIR, { recursive: true });
